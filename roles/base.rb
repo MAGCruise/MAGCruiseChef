@@ -13,5 +13,6 @@ default_attributes(
 run_list [
   'recipe[ntp]',
   'recipe[timezone]',
-  'recipe[git]'
+  'recipe[git]',
+  'recipe[iptables-setup]'
 ]
