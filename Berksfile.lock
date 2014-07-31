@@ -2,7 +2,9 @@ DEPENDENCIES
   apache2
   git
   mysql
+  ntp
   php
+  timezone
 
 GRAPH
   apache2 (1.11.0)
@@ -28,6 +30,7 @@ GRAPH
   logrotate (1.6.0)
   mysql (5.3.6)
     yum-mysql-community (>= 0.0.0)
+  ntp (1.6.4)
   pacman (1.1.1)
   php (1.4.6)
     build-essential (>= 0.0.0)
@@ -40,6 +43,7 @@ GRAPH
     build-essential (>= 0.0.0)
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
+  timezone (0.0.1)
   windows (1.33.1)
     chef_handler (>= 0.0.0)
   xml (1.2.6)

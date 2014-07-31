@@ -1,0 +1,17 @@
+name 'base'
+description ''
+default_attributes(
+  ntp: {
+    servers: [
+      'ntp.jst.mfeed.ad.jp',
+      'ntp.nict.jp',
+      'ntp.ring.gr.jp'
+    ]
+  },
+  tz: 'Asia/Tokyo'
+)
+run_list [
+  'recipe[ntp]',
+  'recipe[timezone]',
+  'recipe[git]'
+]
