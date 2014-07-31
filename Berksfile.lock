@@ -5,6 +5,11 @@ DEPENDENCIES
   ntp
   php
   timezone
+  yum
+  yum-remi
+    git: git://github.com/aiming-cookbooks/yum-remi.git
+    revision: b0094658ea4249ea4dd62f5cd9a095f94a6c3dfc
+  yum-repoforge
 
 GRAPH
   apache2 (1.11.0)
@@ -54,3 +59,8 @@ GRAPH
     yum (~> 3.0)
   yum-mysql-community (0.1.10)
     yum (>= 3.0)
+  yum-remi (0.1.1)
+    yum (>= 3.0.0)
+  yum-repoforge (0.3.0)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
