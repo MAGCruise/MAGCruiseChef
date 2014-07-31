@@ -29,13 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.box_check_update = false
 
   config.vm.network "private_network", ip: "192.168.33.10"
-
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
-
+  config.vm.synced_folder "./src", "/var/www/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
@@ -47,7 +41,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.roles_path     = 'roles'
     chef.cookbooks_path = ['cookbooks', 'site-cookbooks']
 
-    chef.add_recipe 'git'
     chef.add_role 'webserver'
     chef.add_role 'database'
 

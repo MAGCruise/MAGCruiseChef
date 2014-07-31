@@ -1,0 +1,3 @@
+[submodule "src/MAGCruiseWebUI"]
+	path = src/MAGCruiseWebUI
+	url = git@github.com:MAGCruise/MAGCruiseWebUI.git

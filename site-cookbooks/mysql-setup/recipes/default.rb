@@ -29,3 +29,14 @@ mysql_database_user 'magcruise' do
   action        [:create, :grant]
 end
 
+# remote_file '/tmp/magcruise_webui_init.sql' do
+#   source 'https://raw.githubusercontent.com/MAGCruise/MAGCruiseWebUI/master/data/magcruise_webui_init.sql'
+#   action :create_if_missing
+# end
+
+# mysql_database 'create-tables' do
+#   connection mysql_connection_info
+#   database_name 'magcruise'
+#   sql { ::File.open('/tmp/magcruise_webui_init.sql').read }
+#   action :query
+# end
