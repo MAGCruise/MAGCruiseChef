@@ -49,6 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     chef.add_recipe 'git'
     chef.add_role 'webserver'
+    chef.add_role 'database'
 
     chef.json = {
 

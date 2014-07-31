@@ -1,0 +1,31 @@
+#
+# Cookbook Name:: mysql-setup
+# Recipe:: default
+#
+# Copyright 2014, YOUR_COMPANY_NAME
+#
+# All rights reserved - Do Not Redistribute
+#
+include_recipe 'mysql::server'
+include_recipe 'database::mysql'
+
+mysql_connection_info = {
+  host: 'localhost',
+  username: 'root',
+  password: node['mysql']['server_root_password'],
+}
+
+mysql_database 'magcruise' do
+  connection mysql_connection_info
+  action :create
+end
+
+mysql_database_user 'magcruise' do
+  connection    mysql_connection_info
+  password      'passw@rd'
+  database_name 'magcruise'
+  privileges    [:all]
+  host          '%'
+  action        [:create, :grant]
+end
+
