@@ -7,7 +7,14 @@
 # All rights reserved - Do Not Redistribute
 #
 
-%w(php php-mbstring).each do |package|
+%w[
+  php
+  php-devel
+  php-mbstring
+  php-mcrypt
+  php-pdo
+  php-mysql
+].each do |package|
   package package do
     options "--enablerepo=remi"
     action :install
