@@ -16,6 +16,7 @@ MAGCruiseChef
 	```sh
 	vagrant plugin install vagrant-omnibus
 	vagrant plugin install vagrant-vbguest
+	vagrant plugin install landrush
 	```
 
 ## 使い方
