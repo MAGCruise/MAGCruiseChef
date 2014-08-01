@@ -1,8 +1,8 @@
 DEPENDENCIES
   apache2
+  database
   git
-  mysql-setup
-    path: site-cookbooks/mysql-setup
+  mysql
   ntp
   php
   timezone
@@ -46,9 +46,6 @@ GRAPH
     yum-mysql-community (>= 0.0.0)
   mysql-chef_gem (0.0.2)
     build-essential (>= 0.0.0)
-    mysql (>= 0.0.0)
-  mysql-setup (0.1.0)
-    database (>= 0.0.0)
     mysql (>= 0.0.0)
   ntp (1.6.4)
   openssl (2.0.0)

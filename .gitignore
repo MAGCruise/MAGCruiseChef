@@ -1,5 +1,6 @@
 /.chef/
 /.vagrant
 /cookbooks/
+/src/*
 
 .DS_Store

@@ -41,8 +41,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.roles_path     = 'roles'
     chef.cookbooks_path = ['cookbooks', 'site-cookbooks']
 
-    chef.add_role 'webserver'
     chef.add_role 'database'
+    chef.add_role 'webserver'
 
     chef.json = {
 

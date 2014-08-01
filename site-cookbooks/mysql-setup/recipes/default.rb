@@ -22,17 +22,17 @@ end
 
 mysql_database_user 'magcruise' do
   connection    mysql_connection_info
-  password      'passw@rd'
+  password      'password'
   database_name 'magcruise'
   privileges    [:all]
   host          '%'
   action        [:create, :grant]
 end
 
-# remote_file '/tmp/magcruise_webui_init.sql' do
-#   source 'https://raw.githubusercontent.com/MAGCruise/MAGCruiseWebUI/master/data/magcruise_webui_init.sql'
-#   action :create_if_missing
-# end
+remote_file '/tmp/magcruise_webui_init.sql' do
+  source 'https://raw.githubusercontent.com/MAGCruise/MAGCruiseWebUI/master/data/magcruise_webui_init.sql'
+  action :create_if_missing
+end
 
 # mysql_database 'create-tables' do
 #   connection mysql_connection_info
