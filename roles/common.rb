@@ -1,4 +1,4 @@
-name 'base'
+name 'common'
 description ''
 default_attributes(
   ntp: {

@@ -1,7 +1,7 @@
 name 'database'
 description "Systems that serve MySQL"
 run_list(
-  "role[base]",
+  "role[common]",
   "recipe[mysql-setup]"
 )
 default_attributes(
