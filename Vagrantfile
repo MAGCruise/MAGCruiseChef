@@ -2,6 +2,7 @@
 # vi: set ft=ruby :
 
 require './vagrant/virtual_box'
+require './vagrant/chef'
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
@@ -15,44 +16,49 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.landrush.guest_redirect_dns = false
   end
 
-  VirtualBox::configure config do|vb|
-    # # Don't boot with headless mode
-    # vb.gui = true
+  config.vm.define :webui do |webui|
+    VirtualBox::configure(webui) do |vb|
+      # # Don't boot with headless mode
+      # vb.gui = true
 
-    # # Use VBoxManage to customize the VM. For example to change memory:
-    # vb.customize ["modifyvm", :id, "--memory", "1024"]
+      # # Use VBoxManage to customize the VM. For example to change memory:
+      # vb.customize ["modifyvm", :id, "--memory", "1024"]
+    end
+
+    webui.vm.network :private_network, ip: "192.168.33.10"
+    webui.landrush.host 'magcruise.dev', '192.168.33.10'
+    webui.landrush.host 'db.magcruise.dev', '192.168.33.10'
+
+    config.vm.synced_folder "./src", "/var/www/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
+    Chef::configure(webui) do|chef|
+      chef.add_role 'webserver'
+      chef.add_role 'database'
+      chef.json = {
+      }
+    end
   end
 
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
+  # config.vm.define :db do |db|
+  #   VirtualBox::configure(db)
+  #   db.vm.network :private_network, ip: "192.168.33.12"
 
-  config.vm.network "private_network", ip: "192.168.33.10"
-  config.vm.synced_folder "./src", "/var/www/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
+  #   Chef::configure(db) do|chef|
+  #     chef.add_role 'database'
+  #     chef.json = {
 
-  # Enable provisioning with chef solo, specifying a cookbooks path, roles
-  # path, and data_bags path (all relative to this Vagrantfile), and adding
-  # some recipes and/or roles.
-  #
-  config.omnibus.chef_version = :latest
-  config.vm.provision :chef_solo do |chef|
-    chef.log_level      = :debug
-    chef.roles_path     = 'roles'
-    chef.cookbooks_path = ['cookbooks', 'site-cookbooks']
+  #     }
+  #   end
+  # end
 
-    chef.add_role 'database'
-    chef.add_role 'webserver'
+  # config.vm.define :broker do|broker|
 
-    chef.json = {
+  #   VirtualBox::configure broker do|vb|
+  #     app.vm.network :private_network, ip: '192.168.33.11'
+  #     app.vm.hostname = 'broker.magcruise.dev'
+  #     app.landrush.host 'broker.magcruise.dev', '192.168.33.11'
+  #   end
 
-    }
-
-  #   chef.data_bags_path = "../my-recipes/data_bags"
-  #
-  #   # You may also specify custom JSON attributes:
-  #   chef.json = { mysql_password: "foo" }
-  end
+  # end
 
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).

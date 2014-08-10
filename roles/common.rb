@@ -15,7 +15,5 @@ run_list [
   'recipe[timezone]',
   'recipe[git]',
   'recipe[iptables-setup]',
-  'recipe[yum-epel]',
-  'recipe[yum-remi]',
-  'recipe[yum-repoforge]'
+  'recipe[yum-repository-setup]',
 ]

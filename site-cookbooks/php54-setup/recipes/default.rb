@@ -9,11 +9,10 @@
 
 %w[
   php
-  php-devel
   php-mbstring
   php-mcrypt
-  php-pdo
-  php-mysql
+  php-mysqlnd
+  php-gd
 ].each do |package|
   package package do
     options "--enablerepo=remi"

@@ -62,10 +62,10 @@ class DATABASE_CONFIG {
   public $default = array(
     'datasource' => 'Database/Mysql',
     'persistent' => false,
-    'host' => 'localhost',
-    'login' => 'magcruise',
-    'password' => 'password',
-    'database' => 'magcruise',
+    'host' => '<%= node[:app][:database][:host] %>',
+    'login' => '<%= node[:app][:database][:login] %>',
+    'password' => '<%= node[:app][:database][:password] %>',
+    'database' => '<%= node[:app][:database][:database] %>',
     'prefix' => '',
     'encoding' => 'utf8',
   );
@@ -73,11 +73,11 @@ class DATABASE_CONFIG {
   public $test = array(
     'datasource' => 'Database/Mysql',
     'persistent' => false,
-    'host' => 'localhost',
-    'login' => 'user',
-    'password' => 'password',
-    'database' => 'test_database_name',
-    'prefix' => '',
+    'host' => '<%= node[:app][:database][:host] %>',
+    'login' => '<%= node[:app][:database][:login] %>',
+    'password' => '<%= node[:app][:database][:password] %>',
+    'database' => '<%= node[:app][:database][:database] %>',
+    'prefix' => 'test_',
     'encoding' => 'utf8',
   );
 }
