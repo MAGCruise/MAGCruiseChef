@@ -27,12 +27,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     webui.vm.network :private_network, ip: "192.168.33.10"
     webui.landrush.host 'magcruise.dev', '192.168.33.10'
-    webui.landrush.host 'db.magcruise.dev', '192.168.33.10'
 
     config.vm.synced_folder "./src", "/var/www/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
     Chef::configure(webui) do|chef|
       chef.add_role 'webserver'
-      chef.add_role 'database'
       chef.json = {
       }
     end
@@ -41,6 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.define :db do |db|
   #   VirtualBox::configure(db)
   #   db.vm.network :private_network, ip: "192.168.33.12"
+  #   db.landrush.host 'db.magcruise.dev', '192.168.33.10'
 
   #   Chef::configure(db) do|chef|
   #     chef.add_role 'database'

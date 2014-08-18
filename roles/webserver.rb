@@ -2,7 +2,6 @@ name 'webserver'
 description "Systems that serve HTTP and HTTPS"
 run_list(
   'role[common]',
-  'recipe[php54-setup]',
   'recipe[apache-setup]'
 )
 default_attributes(

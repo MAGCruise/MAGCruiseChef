@@ -11,9 +11,8 @@ default_attributes(
   tz: 'Asia/Tokyo'
 )
 run_list [
+  'recipe[apt]',
   'recipe[ntp]',
   'recipe[timezone]',
-  'recipe[git]',
-  'recipe[iptables-setup]',
-  'recipe[yum-repository-setup]',
+  'recipe[git]'
 ]
