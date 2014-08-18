@@ -6,6 +6,7 @@ DEPENDENCIES
   ntp
   php
   timezone
+  tomcat
   yum
 
 GRAPH
@@ -35,6 +36,7 @@ GRAPH
   iis (2.1.2)
     windows (>= 1.2.6)
   iptables (0.13.2)
+  java (1.26.0)
   logrotate (1.6.0)
   mysql (5.3.6)
     yum-mysql-community (>= 0.0.0)
@@ -61,6 +63,9 @@ GRAPH
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
   timezone (0.0.1)
+  tomcat (0.16.2)
+    java (>= 0.0.0)
+    openssl (>= 0.0.0)
   windows (1.34.0)
     chef_handler (>= 0.0.0)
   xfs (1.1.0)
