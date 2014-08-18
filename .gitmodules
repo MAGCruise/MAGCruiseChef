@@ -1,3 +1,6 @@
 [submodule "src/MAGCruiseWebUI"]
 	path = src/MAGCruiseWebUI
 	url = git@github.com:MAGCruise/MAGCruiseWebUI.git
+[submodule "src/MACCruiseBroker"]
+	path = src/MACCruiseBroker
+	url = git@github.com:MAGCruise/MAGCruiseBroker.git
