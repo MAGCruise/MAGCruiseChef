@@ -36,18 +36,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  # config.vm.define :db do |db|
-  #   VirtualBox::configure(db)
-  #   db.vm.network :private_network, ip: "192.168.33.12"
-  #   db.landrush.host 'db.magcruise.dev', '192.168.33.10'
+  config.vm.define :db do |db|
+    VirtualBox::configure(db)
+    db.vm.network :private_network, ip: "192.168.33.12"
+    db.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
+    db.landrush.host 'db.magcruise.dev', '192.168.33.12'
 
-  #   Chef::configure(db) do|chef|
-  #     chef.add_role 'database'
-  #     chef.json = {
+    Chef::configure(db) do|chef|
+      chef.add_role 'database'
+      chef.json = {
 
-  #     }
-  #   end
-  # end
+      }
+    end
+  end
 
   # config.vm.define :broker do|broker|
 
