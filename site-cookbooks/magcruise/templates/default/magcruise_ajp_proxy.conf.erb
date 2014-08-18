@@ -1,0 +1,2 @@
+ProxyPass <%= node[:magcruise][:broker][:context_path] %> ajp://localhost:8009/<%= node[:magcruise][:broker][:context_path] %>
+ProxyPass <%= node[:magcruise][:broker_it][:context_path] %> ajp://localhost:8009/<%= node[:magcruise][:broker_it][:context_path] %>

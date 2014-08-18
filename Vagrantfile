@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.landrush.guest_redirect_dns = false
   end
 
-  config.vm.define :all do |all|
+  config.vm.define :default do |all|
     VirtualBox::configure(all) do |vb|
       # # Don't boot with headless mode
       # vb.gui = true
@@ -34,6 +34,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     Chef::configure(all) do|chef|
       chef.add_role 'webserver'
       chef.add_role 'database'
+      chef.add_role 'java-server'
       chef.json = {
       }
     end

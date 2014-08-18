@@ -13,9 +13,15 @@ default[:magcruise][:contact] = 'dev@magcruise.com'
 default[:magcruise][:apps_root] = '/var/apps'
 default[:magcruise][:synced_folder] = '/var/src'
 default[:magcruise][:document_root] = "#{node['magcruise']['apps_root']}/#{node['magcruise']['name']}"
+default[:magcruise][:webui_host] = 'localhost'
 
 default[:magcruise][:db][:name] = "#{node[:magcruise][:name]}"
 default[:magcruise][:db][:host] = "localhost"
 default[:magcruise][:db][:user] = "#{node[:magcruise][:name]}"
 default[:magcruise][:db][:password] = "password"
 default[:magcruise][:db][:init_sql] = "magcruise_webui_init.sql"
+
+# magcruise broker default settings
+default[:magcruise][:broker][:context_path] = '/magcruise'
+default[:magcruise][:broker][:docbase] = "#{node[:magcruise][:apps_root]}#{node[:magcruise][:broker][:context_path]}"
+default[:magcruise][:broker_it][:context_path] = '/magcruise-it'
