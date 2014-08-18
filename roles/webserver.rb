@@ -2,14 +2,14 @@ name 'webserver'
 description "Systems that serve HTTP and HTTPS"
 run_list(
   'role[common]',
-  'recipe[php54-setup]',
-  'recipe[apache-setup]'
+  'recipe[apache-setup]',
+  'recipe[magcruise]'
 )
 default_attributes(
   "apache" => {
     "listen_ports" => ["80", "443"]
   },
-  "app" => {
+  "magcruise" => {
     "database" => {
       "host" => "localhost",
       "login" => "magcruise",

@@ -1,8 +1,8 @@
 name 'database'
-description "Systems that serve MySQL"
+description "setup Database for MagCruise"
 run_list(
-  "role[common]",
-  "recipe[mysql-setup]"
+  'role[common]',
+  'recipe[magcruise::database]'
 )
 default_attributes(
 )

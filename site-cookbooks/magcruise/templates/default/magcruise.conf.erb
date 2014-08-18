@@ -1,7 +1,7 @@
 <VirtualHost *:80>
-  ServerAdmin ops@example.com
+  ServerAdmin <%= node['magcruise']['contact'] %>
 
-  DocumentRoot /var/www/src/MAGCruiseWebUI/
+  DocumentRoot <%= node['magcruise']['document_root'] %>
   <Directory />
     Options FollowSymLinks
     AllowOverride All
@@ -9,12 +9,13 @@
     Allow from all
   </Directory>
 
-  ErrorLog /var/log/httpd/error.log
+  ErrorLog <%= node['apache']['log_dir'] %>/magcruise_error.log
 
   # Possible values include: debug, info, notice, warn, error, crit,
   # alert, emerg.
   LogLevel warn
 
-  CustomLog /var/log/httpd/access.log combined
+  CustomLog <%= node['apache']['log_dir'] %>/magcruise_access.log combined
   ServerSignature On
 </VirtualHost>
+
