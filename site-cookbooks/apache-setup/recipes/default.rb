@@ -10,7 +10,12 @@ include_recipe 'apache2'
 include_recipe 'apache2::mod_rewrite'
 include_recipe 'apache2::mod_ssl'
 include_recipe 'apache2::mod_php5'
-include_recipe 'php::module_mysql'
+
+%w[php5-mysql php5-json].each do|pkg|
+  package pkg do
+    action :install
+  end
+end
 
 cookbook_file "#{node['apache']['docroot_dir']}/phpinfo.php" do
   source 'phpinfo.php'

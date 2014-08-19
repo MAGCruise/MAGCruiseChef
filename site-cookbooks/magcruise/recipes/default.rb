@@ -42,9 +42,9 @@ link node[:magcruise][:webui][:document_root] do
   only_if { File.exists?("#{node[:magcruise][:webui][:src]}") }
 end
 
-# apache_site "000-default" do
-#   enable false
-# end
+apache_site "000-default" do
+  enable false
+end
 
 # enable magcruise
 apache_site '010-magcruise' do
