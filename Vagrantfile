@@ -11,7 +11,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   if defined?(Landrush)
     config.landrush.enabled = true
-    config.vm.hostname  = 'magcruise.dev'
     config.landrush.tld = 'magcruise.dev'
     config.landrush.guest_redirect_dns = false
   end
@@ -26,9 +25,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     all.vm.network :private_network, ip: '192.168.30.10'
+    all.vm.hostname = 'magcruise.dev'
     all.landrush.host 'www.magcruise.dev', '192.168.30.10'
-    all.landrush.host 'db.magcruise.dev', '192.168.30.10'
-    all.landrush.host 'broker.magcruise.dev', '192.168.30.10'
 
     config.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
     Chef::configure(all) do|chef|
@@ -44,6 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     VirtualBox::configure(webui)
 
     webui.vm.network :private_network, ip: '192.168.33.10'
+    webui.vm.hostname = 'magcruise.dev'
     webui.landrush.host 'www.magcruise.dev', '192.168.33.10'
 
     config.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']

@@ -10,6 +10,7 @@ include_recipe 'apache2'
 include_recipe 'apache2::mod_rewrite'
 include_recipe 'apache2::mod_ssl'
 include_recipe 'apache2::mod_php5'
+include_recipe 'php::module_mysql'
 
 cookbook_file "#{node['apache']['docroot_dir']}/phpinfo.php" do
   source 'phpinfo.php'

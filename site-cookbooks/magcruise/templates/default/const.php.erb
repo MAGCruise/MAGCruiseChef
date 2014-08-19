@@ -1,0 +1,10 @@
+<?php
+//CORE_FOR_DEV_URLは，Webブラウザから見たロケーション，
+//CORE_CONTROLLER_URL,PROCESS_CONTROLLER_URLは，MAGCruiseWebUIから見たロケーションであることに注意．
+
+//define("CORE_FOR_DEV_URL", 'http://magcruise-core.magcruise.org/magcruise');
+define("CORE_FOR_DEV_URL", '/magcruise/');
+define("CORE_CONTROLLER_URL", 'http://<%=node[:magcruise][:broker][:hostname]%><%=node[:magcruise][:broker][:context_path]%>/jsServices/MAGCruiseCoreController');
+define("PROCESS_CONTROLLER_URL", 'http://<%=node[:magcruise][:broker][:hostname]%><%=node[:magcruise][:broker][:context_path]%>/jsServices/ProcessController');
+
+?>

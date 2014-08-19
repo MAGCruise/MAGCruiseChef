@@ -1,21 +1,26 @@
 <VirtualHost *:80>
-  ServerAdmin <%= node['magcruise']['contact'] %>
+  ServerName  <%= node[:magcruise][:domain] %>
+  ServerAlias <%= "www.#{node[:magcruise][:domain]}" %>
+  ServerAdmin <%= node[:magcruise][:contact] %>
 
-  DocumentRoot <%= node['magcruise']['document_root'] %>
+  DocumentRoot <%= node[:magcruise][:webui][:document_root] %>
   <Directory />
     Options FollowSymLinks
     AllowOverride All
+  <% if node[:apache][:version].to_f >= 2.4 %>
+    Require all granted
+  <% else %>
     Order allow,deny
     Allow from all
+  <% end %>
   </Directory>
 
-  ErrorLog <%= node['apache']['log_dir'] %>/magcruise_error.log
+  ErrorLog <%= node[:apache][:log_dir] %>/magcruise_error.log
 
   # Possible values include: debug, info, notice, warn, error, crit,
   # alert, emerg.
   LogLevel warn
 
-  CustomLog <%= node['apache']['log_dir'] %>/magcruise_access.log combined
+  CustomLog <%= node[:apache][:log_dir] %>/magcruise_access.log combined
   ServerSignature On
 </VirtualHost>
-
