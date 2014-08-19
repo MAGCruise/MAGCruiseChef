@@ -1,2 +1,13 @@
-ProxyPass <%= node[:magcruise][:broker][:context_path] %> ajp://localhost:8009/<%= node[:magcruise][:broker][:context_path] %>
-ProxyPass <%= node[:magcruise][:broker_it][:context_path] %> ajp://localhost:8009/<%= node[:magcruise][:broker_it][:context_path] %>
+ProxyPass <%= node[:magcruise][:broker][:context_path] %> ajp://localhost:8009<%= node[:magcruise][:broker][:context_path] %>
+ProxyPassReverse <%= node[:magcruise][:broker][:context_path] %> ajp://localhost:8009<%= node[:magcruise][:broker][:context_path] %>
+ProxyPass <%= node[:magcruise][:broker_it][:context_path] %> ajp://localhost:8009<%= node[:magcruise][:broker_it][:context_path] %>
+ProxyPassReverse <%= node[:magcruise][:broker_it][:context_path] %> ajp://localhost:8009<%= node[:magcruise][:broker_it][:context_path] %>
+
+<Proxy *>
+  <% if node[:apache][:version].to_f >= 2.4 %>
+    Require all granted
+  <% else %>
+    Order allow,deny
+    Allow from all
+  <% end %>
+</Proxy>

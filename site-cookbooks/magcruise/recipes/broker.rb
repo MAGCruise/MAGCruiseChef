@@ -37,3 +37,7 @@ link "#{node[:magcruise][:broker][:docbase]}" do
   to  "#{node[:magcruise][:synced_folder]}/MAGCruiseBroker/webapps_magcruise/magcruise"
   only_if "test -d #{node[:magcruise][:synced_folder]}/MAGCruiseBroker/webapps_magcruise/magcruise"
 end
+
+service 'tomcat7' do
+  action [:restart]
+end
