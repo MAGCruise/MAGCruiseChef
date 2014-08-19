@@ -15,8 +15,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.landrush.guest_redirect_dns = false
   end
 
-  config.vm.define :default do |all|
-    VirtualBox::configure(all) do |vb|
+  config.vm.define :default do |default|
+    VirtualBox::configure(default) do |vb|
       # # Don't boot with headless mode
       # vb.gui = true
 
@@ -24,12 +24,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # vb.customize ["modifyvm", :id, "--memory", "1024"]
     end
 
-    all.vm.network :private_network, ip: '192.168.30.10'
-    all.vm.hostname = 'magcruise.dev'
-    all.landrush.host 'www.magcruise.dev', '192.168.30.10'
+    default.vm.network :private_network, ip: '192.168.30.10'
+    default.vm.hostname = 'magcruise.dev'
+    default.landrush.host 'www.magcruise.dev', '192.168.30.10'
 
     config.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
-    Chef::configure(all) do|chef|
+    Chef::configure(default) do|chef|
       chef.add_role 'webserver'
       chef.add_role 'database'
       chef.add_role 'java-server'

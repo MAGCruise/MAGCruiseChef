@@ -20,7 +20,7 @@ mysql_database node[:magcruise][:db][:name] do
   action :create
 end
 
-mysql_database_user node[:magcruise][:db][:user] do
+mysql_database_user node[:magcruise][:db][:login] do
   connection    mysql_connection_info
   password      node[:magcruise][:db][:password]
   database_name node[:magcruise][:db][:name]
