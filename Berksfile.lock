@@ -2,6 +2,9 @@ DEPENDENCIES
   apache2
   database
   git
+  hostsfile
+    git: git@github.com:customink-webops/hostsfile.git
+    revision: 495fd80ba7a3c306abe8c2585f6ec25bd937fc81
   mysql
   ntp
   php
@@ -14,12 +17,12 @@ GRAPH
     iptables (>= 0.0.0)
     logrotate (>= 0.0.0)
     pacman (>= 0.0.0)
-  apt (2.4.0)
+  apt (2.5.2)
   aws (2.4.0)
-  build-essential (2.0.4)
+  build-essential (2.0.6)
   chef-sugar (2.0.0)
   chef_handler (1.1.6)
-  database (2.2.0)
+  database (2.3.0)
     aws (>= 0.0.0)
     mysql (>= 5.0.0)
     mysql-chef_gem (>= 0.0.0)
@@ -33,6 +36,7 @@ GRAPH
     windows (>= 0.0.0)
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
+  hostsfile (2.4.5)
   iis (2.1.2)
     windows (>= 1.2.6)
   iptables (0.13.2)
@@ -66,7 +70,7 @@ GRAPH
   tomcat (0.16.2)
     java (>= 0.0.0)
     openssl (>= 0.0.0)
-  windows (1.34.0)
+  windows (1.34.2)
     chef_handler (>= 0.0.0)
   xfs (1.1.0)
   xml (1.2.6)

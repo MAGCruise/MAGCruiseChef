@@ -62,10 +62,10 @@ class DATABASE_CONFIG {
   public $default = array(
     'datasource' => 'Database/Mysql',
     'persistent' => false,
-    'host' => '<%= node[:magcruise][:database][:host] %>',
-    'login' => '<%= node[:magcruise][:database][:login] %>',
-    'password' => '<%= node[:magcruise][:database][:password] %>',
-    'database' => '<%= node[:magcruise][:database][:database] %>',
+    'host' => '<%= node[:magcruise][:db][:host] %>',
+    'login' => '<%= node[:magcruise][:db][:login] %>',
+    'password' => '<%= node[:magcruise][:db][:password] %>',
+    'database' => '<%= node[:magcruise][:db][:name] %>',
     'prefix' => '',
     'encoding' => 'utf8',
   );
@@ -73,10 +73,10 @@ class DATABASE_CONFIG {
   public $test = array(
     'datasource' => 'Database/Mysql',
     'persistent' => false,
-    'host' => '<%= node[:magcruise][:database][:host] %>',
-    'login' => '<%= node[:magcruise][:database][:login] %>',
-    'password' => '<%= node[:magcruise][:database][:password] %>',
-    'database' => '<%= node[:magcruise][:database][:database] %>',
+    'host' => '<%= node[:magcruise][:db][:host] %>',
+    'login' => '<%= node[:magcruise][:db][:login] %>',
+    'password' => '<%= node[:magcruise][:db][:password] %>',
+    'database' => '<%= node[:magcruise][:db][:name] %>',
     'prefix' => 'test_',
     'encoding' => 'utf8',
   );

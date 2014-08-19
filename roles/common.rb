@@ -14,5 +14,6 @@ run_list [
   'recipe[apt]',
   'recipe[ntp]',
   'recipe[timezone]',
-  'recipe[git]'
+  'recipe[git]',
+  'recipe[magcruise::hosts]'
 ]
