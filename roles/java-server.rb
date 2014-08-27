@@ -10,6 +10,7 @@ default_attributes(
     'listen_ports' => ["80", "443"]
   },
   'tomcat' => {
-    'base_version' => 7
+    'base_version' => 7,
+    'java_options' => "${JAVA_OPTS} -Xmx256M"
   }
 )

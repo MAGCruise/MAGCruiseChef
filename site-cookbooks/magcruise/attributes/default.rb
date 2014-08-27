@@ -20,6 +20,7 @@ default[:magcruise][:webui][:name]   = 'MagcruiseWebUI'
 default[:magcruise][:webui][:src]    = "#{node[:magcruise][:synced_folder]}/#{node[:magcruise][:webui][:name]}"
 default[:magcruise][:webui][:config] = '010-magcruise.conf'
 default[:magcruise][:webui][:document_root] = "#{node[:magcruise][:apps_root]}/#{node[:magcruise][:webui][:name]}"
+default[:magcruise][:webui][:path_prefix] = ''
 
 # magcruise database default settings
 default[:magcruise][:db][:host] = 'localhost'

@@ -11,7 +11,11 @@ include_recipe 'apache2::mod_rewrite'
 include_recipe 'apache2::mod_ssl'
 include_recipe 'apache2::mod_php5'
 
-%w[php5-mysql php5-json].each do|pkg|
+%w[
+  php5-mysql
+  php5-json
+  php5-mcrypt
+].each do|pkg|
   package pkg do
     action :install
   end
