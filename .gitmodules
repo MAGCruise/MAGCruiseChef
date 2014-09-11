@@ -4,3 +4,6 @@
 [submodule "src/MAGCruiseBroker"]
 	path = src/MAGCruiseBroker
 	url = git@github.com:MAGCruise/MAGCruiseBroker.git
+[submodule "src/MAGCruiseLibraries"]
+	path = src/MAGCruiseLibraries
+	url = git@github.com:MAGCruise/MAGCruiseLibraries.git

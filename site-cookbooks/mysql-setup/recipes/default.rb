@@ -15,28 +15,30 @@ mysql_connection_info = {
   password: node['mysql']['server_root_password'],
 }
 
-mysql_database 'magcruise' do
-  connection mysql_connection_info
-  action :create
-end
+(node[:database][:database_names]).each do|name|
+  mysql_database database do
+    connection mysql_connection_info
+    action :create
+  end
 
-mysql_database_user 'magcruise' do
-  connection    mysql_connection_info
-  password      'password'
-  database_name 'magcruise'
-  privileges    [:all]
-  host          '%'
-  action        [:create, :grant]
+  mysql_database_user 'magcruise' do
+    connection    mysql_connection_info
+    password      'password'
+    database_name name
+    privileges    [:all]
+    host          node[:database][:host]
+    action        [:create, :grant]
+  end
 end
 
 remote_file '/tmp/magcruise_webui_init.sql' do
-  source 'https://raw.githubusercontent.com/MAGCruise/MAGCruiseWebUI/master/data/magcruise_webui_init.sql'
+  source 'https://raw.githubusercontent.com/MAGCruise/MAGCruiseWebUI/develop/data/magcruise_webui_init.sql'
   action :create_if_missing
 end
 
-# mysql_database 'create-tables' do
-#   connection mysql_connection_info
-#   database_name 'magcruise'
-#   sql { ::File.open('/tmp/magcruise_webui_init.sql').read }
-#   action :query
-# end
+mysql_database 'create-tables' do
+  connection mysql_connection_info
+  database_name 'magcruise'
+  sql { ::File.open('/tmp/magcruise_webui_init.sql').read }
+  action :query
+end
