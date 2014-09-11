@@ -1,35 +1,30 @@
-MAGCruiseChef
+# MAGCruiseChef
 =============
 
-## セットアップ
+## セットアップ手順書
 
-1. Rubyのインストール
-2. gemのインストール
-	```sh
-	bundle install
+開発開始前に実行する
+
+1. Ruby 及び Rubygems のインストール
+	Version 2.0 以降を推奨
+2. bundler をインストール
+	```ruby
+	gem install bundler
 	```
 3. VirtualBoxのインストール
+	サイトからパッケージをダウンロードしてインストール
 	https://www.virtualbox.org
 4. Vagrantのインストール
 	http://www.vagrantup.com
-5. Vagrant pluginのインストール
+	サイトからパッケージをダウンロードしてインストール
+5. setup.sh を実行
 	```sh
-	vagrant plugin install vagrant-omnibus
-	vagrant plugin install vagrant-vbguest
-	vagrant plugin install landrush
+	sh setup.sh
 	```
-
-## 使い方
-
-1. cookbooksの取得
-	```sh
-	bundle ex berks vendor cookbooks
-	```
-
-2. Vagrant up
-
 
 ## 更新時
+リポジトリが更新された場合に実行する
+
 1. gemの更新
 	```sh
 	bundle install
@@ -45,6 +40,15 @@ MAGCruiseChef
 	vagrant provision
 	```
 
+## 動作確認
+ブラウザから [http://www.magcruise.dev/](http://www.magcruise.dev/) にアクセス
+
+データベース
+: WebUI webui.magcruise.dev
+:	ホスト db.magcruise.dev
+: Broker broker.magcruise.dev
+
+IPアドレスは Vagrantfileを参照
 
 ## Vagrant box
 http://nrel.github.io/vagrant-boxes/
