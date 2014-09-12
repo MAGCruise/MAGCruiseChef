@@ -1,5 +1,6 @@
 DEPENDENCIES
   apache2
+  composer
   database
   git
   hostsfile
@@ -8,6 +9,7 @@ DEPENDENCIES
   mysql
   ntp
   php
+  php-mcrypt
   timezone
   tomcat
   yum
@@ -22,6 +24,9 @@ GRAPH
   build-essential (2.0.6)
   chef-sugar (2.0.0)
   chef_handler (1.1.6)
+  composer (1.0.4)
+    php (>= 0.0.0)
+    windows (>= 0.0.0)
   database (2.3.0)
     aws (>= 0.0.0)
     mysql (>= 5.0.0)
@@ -58,6 +63,8 @@ GRAPH
     windows (>= 0.0.0)
     xml (>= 0.0.0)
     yum-epel (>= 0.0.0)
+  php-mcrypt (1.0.0)
+    php (>= 0.0.0)
   postgresql (3.4.1)
     apt (>= 1.9.0)
     build-essential (>= 0.0.0)
