@@ -76,8 +76,8 @@ class DATABASE_CONFIG {
     'host' => '<%= node[:magcruise][:db][:hostname] %>',
     'login' => '<%= node[:magcruise][:db][:login] %>',
     'password' => '<%= node[:magcruise][:db][:password] %>',
-    'database' => '<%= node[:magcruise][:db][:name] %>',
-    'prefix' => 'test_',
+    'database' => 'test_<%= node[:magcruise][:db][:name] %>',
+    'prefix' => '',
     'encoding' => 'utf8',
   );
 }

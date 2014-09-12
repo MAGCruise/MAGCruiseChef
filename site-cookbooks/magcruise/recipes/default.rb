@@ -36,6 +36,11 @@ template "#{node[:magcruise][:webui][:src]}/app/Config/const.php" do
   only_if { File.exists?("#{node[:magcruise][:webui][:src]}") }
 end
 
+composer_project node[:magcruise][:webui][:src] do
+  action :install
+  only_if { File.exists?("#{node[:magcruise][:webui][:src]}") }
+end
+
 # for developing
 link node[:magcruise][:webui][:document_root] do
   to  node[:magcruise][:webui][:src]
