@@ -30,9 +30,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=766']
     Chef::configure(default, :info) do|chef|
-      chef.add_role 'webserver'
       chef.add_role 'database'
       chef.add_role 'java-server'
+      chef.add_role 'webserver'
       chef.json = {
       }
     end
