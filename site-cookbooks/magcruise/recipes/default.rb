@@ -47,6 +47,11 @@ link node[:magcruise][:webui][:document_root] do
   only_if { File.exists?("#{node[:magcruise][:webui][:src]}") }
 end
 
+execute 'cake schema create' do
+  command %[printf "\n\n" | Console/cake schema create -q]
+  cwd     "#{node[:magcruise][:webui][:src]}/app"
+end
+
 apache_site "000-default" do
   enable false
 end

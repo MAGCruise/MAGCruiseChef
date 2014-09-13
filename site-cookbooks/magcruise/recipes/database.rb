@@ -36,21 +36,3 @@ databases.each do|database_name|
     action        [:create, :grant]
   end
 end
-
-link "/tmp/#{node[:magcruise][:db][:init_sql]}" do
-  to  "#{node[:magcruise][:synced_folder]}/MAGCruiseWebUI/data/#{node[:magcruise][:db][:init_sql]}"
-  only_if "test -f #{node[:magcruise][:synced_folder]}/MAGCruiseWebUI/data/#{node[:magcruise][:db][:init_sql]}"
-end
-
-remote_file "/tmp/#{node[:magcruise][:db][:init_sql]}" do
-  source 'https://raw.githubusercontent.com/MAGCruise/MAGCruiseWebUI/develop/data/magcruise_webui_init.sql'
-  action :create_if_missing
-end
-
-mysql_database 'create-tables' do
-  connection mysql_connection_info
-  database_name node[:magcruise][:db][:name]
-  sql { File.open("/tmp/#{node[:magcruise][:db][:init_sql]}").read }
-  action :query
-  only_if { File.exists?("/tmp/#{node[:magcruise][:db][:init_sql]}") }
-end

@@ -28,13 +28,25 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     default.vm.hostname = 'magcruise.dev'
     default.landrush.host 'www.magcruise.dev', '192.168.30.10'
 
-    config.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
+    config.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=766']
     Chef::configure(default, :info) do|chef|
       chef.add_role 'webserver'
       chef.add_role 'database'
       chef.add_role 'java-server'
       chef.json = {
       }
+    end
+  end
+
+  config.vm.define :db do |db|
+    VirtualBox::configure(db)
+    db.vm.network :private_network, ip: '192.168.33.12'
+    db.vm.hostname = 'db.magcruise.dev'
+    db.landrush.host 'db.magcruise.dev', '192.168.33.12'
+
+    db.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
+    Chef::configure(db) do|chef|
+      chef.add_role 'database'
     end
   end
 
@@ -45,7 +57,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     webui.vm.hostname = 'www.magcruise.dev'
     webui.landrush.host 'www.magcruise.dev', '192.168.33.10'
 
-    config.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
+    config.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=766']
     Chef::configure(webui) do|chef|
       chef.add_role 'webserver'
       chef.json = {
@@ -71,18 +83,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           webui: { host: '192.168.33.10' }
         }
       }
-    end
-  end
-
-  config.vm.define :db do |db|
-    VirtualBox::configure(db)
-    db.vm.network :private_network, ip: '192.168.33.12'
-    db.vm.hostname = 'db.magcruise.dev'
-    db.landrush.host 'db.magcruise.dev', '192.168.33.12'
-
-    db.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
-    Chef::configure(db) do|chef|
-      chef.add_role 'database'
     end
   end
 end
