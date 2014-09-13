@@ -46,6 +46,10 @@ else
 	# clone submodules
 	git submodule update --init
 
+	pushd src/MAGCruiseBroker
+	git submodule update --init
+	popd
+
 	# insall vagrant plugin
 	vagrant plugin install vagrant-omnibus
 	vagrant plugin install vagrant-vbguest
