@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     default.landrush.host 'www.magcruise.dev', '192.168.30.10'
 
     config.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
-    Chef::configure(default) do|chef|
+    Chef::configure(default, :info) do|chef|
       chef.add_role 'webserver'
       chef.add_role 'database'
       chef.add_role 'java-server'
