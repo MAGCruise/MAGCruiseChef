@@ -6,8 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe 'tomcat'
-include_recipe 'apache2'
+include_recipe 'tomcat7-setup'
 
 template "#{node[:tomcat][:config_dir]}/Catalina/localhost/magcruise.xml" do
   source 'magcruise.xml.erb'
@@ -35,9 +34,6 @@ end
 # for developing
 link "#{node[:magcruise][:broker][:docbase]}" do
   to  "#{node[:magcruise][:synced_folder]}/MAGCruiseBroker/webapps_magcruise/magcruise"
+  notifies :restart, 'service[tomcat7]'
   only_if "test -d #{node[:magcruise][:synced_folder]}/MAGCruiseBroker/webapps_magcruise/magcruise"
-end
-
-service 'tomcat7' do
-  action [:restart]
 end
