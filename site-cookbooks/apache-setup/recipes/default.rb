@@ -41,3 +41,9 @@ end
 apache_site "000-default" do
   enable true
 end
+
+group node[:magcruise][:group] do
+  action :modify
+  members node[:apache][:user]
+  append true
+end

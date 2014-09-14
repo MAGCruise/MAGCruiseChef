@@ -52,3 +52,6 @@ IPアドレスは Vagrantfileを参照
 
 ## Vagrant box
 http://nrel.github.io/vagrant-boxes/
+
+## 開発関連
+[開発時の設定等](doc/development.md)

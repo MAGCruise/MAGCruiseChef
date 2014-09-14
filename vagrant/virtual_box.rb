@@ -13,4 +13,20 @@ module VirtualBox
     end
   end
 
+  def synced_src(config, src_path, name, options = {})
+    options = {
+      create: true,
+      owner: 'vagrant',
+      group: 'vagrant',
+      mount_options: ['dmode=777', 'fmode=766']
+    }.merge(options)
+
+    config.vm.synced_folder src_path, "/var/src/#{name}", options
+  end
+
+  def rsynced_src(config, src_path, name, options = {})
+    options = {type: 'rsync', rsync__exlude: [".git"]}.merge(options)
+
+    config.vm.synced_folder src_path, "/var/src/#{name}", options
+  end
 end

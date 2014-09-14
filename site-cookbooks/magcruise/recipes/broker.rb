@@ -31,9 +31,7 @@ directory "#{node['magcruise']['apps_root']}" do
   recursive true
 end
 
-# for developing
-link "#{node[:magcruise][:broker][:docbase]}" do
-  to  "#{node[:magcruise][:synced_folder]}/MAGCruiseBroker/webapps_magcruise/magcruise"
+link node[:magcruise][:broker][:docbase] do
+  to node[:magcruise][:broker][:src]
   notifies :restart, 'service[tomcat7]'
-  only_if "test -d #{node[:magcruise][:synced_folder]}/MAGCruiseBroker/webapps_magcruise/magcruise"
 end

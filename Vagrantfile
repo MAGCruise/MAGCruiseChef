@@ -15,12 +15,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.landrush.guest_redirect_dns = false
   end
 
+  # ローカル開発用
   config.vm.define :default do |default|
     VirtualBox::configure(default) do |vb|
-      # # Don't boot with headless mode
-      # vb.gui = true
-
-      # # Use VBoxManage to customize the VM. For example to change memory:
       vb.customize ["modifyvm", :id, "--memory", "2048"]
     end
 
@@ -28,13 +25,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     default.vm.hostname = 'magcruise.dev'
     default.landrush.host 'www.magcruise.dev', '192.168.30.10'
 
-    config.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=766']
+    VirtualBox::synced_src  default, 'src/MAGCruiseWebUI', 'MAGCruiseWebUI'
+    VirtualBox::rsynced_src default, 'src/MAGCruiseBroker/webapps_magcruise/magcruise', 'MAGCruiseBroker'
+
     Chef::configure(default, :info) do|chef|
       chef.add_role 'database'
       chef.add_role 'java-server'
       chef.add_role 'webserver'
-      chef.json = {
-      }
+      chef.json = { }
     end
   end
 
@@ -44,7 +42,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     db.vm.hostname = 'db.magcruise.dev'
     db.landrush.host 'db.magcruise.dev', '192.168.33.12'
 
-    db.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
     Chef::configure(db) do|chef|
       chef.add_role 'database'
     end
@@ -57,7 +54,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     webui.vm.hostname = 'www.magcruise.dev'
     webui.landrush.host 'www.magcruise.dev', '192.168.33.10'
 
-    config.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=766']
+    VirtualBox::synced_src webui, 'src/MAGCruiseWebUI', 'MAGCruiseWebUI'
+
     Chef::configure(webui) do|chef|
       chef.add_role 'webserver'
       chef.json = {
@@ -71,11 +69,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :broker do|broker|
     VirtualBox::configure broker
+
     broker.vm.network :private_network, ip: '192.168.33.11'
     broker.vm.hostname = 'broker.magcruise.dev'
     broker.landrush.host 'broker.magcruise.dev', '192.168.33.11'
 
-    broker.vm.synced_folder "./src", "/var/src", :create => true, :owner => 'vagrant', :group => 'vagrant', :mount_options => ['dmode=777', 'fmode=666']
+    VirtualBox::rsynced_src broker, 'src/MAGCruiseBroker/webapps_magcruise/magcruise', 'MAGCruiseBroker'
+
     Chef::configure(broker) do|chef|
       chef.add_role 'java-server'
       chef.json = {
