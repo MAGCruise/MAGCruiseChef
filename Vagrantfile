@@ -74,7 +74,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     broker.vm.hostname = 'broker.magcruise.dev'
     broker.landrush.host 'broker.magcruise.dev', '192.168.33.11'
 
-    VirtualBox::rsynced_src broker, 'src/MAGCruiseBroker/webapps_magcruise/magcruise', 'MAGCruiseBroker'
+    VirtualBox::rsynced_src broker, 'src/MAGCruiseBroker', 'MAGCruiseBroker'
 
     Chef::configure(broker) do|chef|
       chef.add_role 'java-server'
