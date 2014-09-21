@@ -1,11 +1,11 @@
-apache-setup CHANGELOG
+php5-setup CHANGELOG
 ======================
 
-This file is used to list changes made in each version of the apache-setup cookbook.
+This file is used to list changes made in each version of the php5-setup cookbook.
 
 0.1.0
 -----
-- [your_name] - Initial release of apache-setup
+- [your_name] - Initial release of php5-setup
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

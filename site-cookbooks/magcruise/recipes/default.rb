@@ -15,4 +15,4 @@ user node[:magcruise][:user] do
   system true
 end
 
-include_recipe 'apache-setup'
+include_recipe 'php5-setup'
