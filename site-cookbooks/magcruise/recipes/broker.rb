@@ -25,17 +25,24 @@ template "#{node['apache']['dir']}/sites-available/020-magcruise-broker.conf" do
   notifies :restart, 'service[apache2]'
 end
 
+git node[:magcruise][:broker][:src] do
+  repository node[:magcruise][:broker][:src_url]
+  revision "master"
+  action :sync
+  only_if { node[:magcruise][:broker][:src_type] == 'git' }
+end
+
 apache_site '020-magcruise-broker' do
   enable true
 end
 
 # create document root
-directory "#{node['magcruise']['apps_root']}" do
+directory node[:magcruise][:apps_root] do
   action :create
   recursive true
 end
 
-link node[:magcruise][:broker][:docbase] do
+link "#{node[:magcruise][:apps_root]}/#{node[:magcruise][:broker][:name]}" do
   to node[:magcruise][:broker][:src]
   notifies :restart, 'service[tomcat7]'
 end
