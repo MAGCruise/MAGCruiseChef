@@ -14,5 +14,3 @@ user node[:magcruise][:user] do
   group node[:magcruise][:group]
   system true
 end
-
-include_recipe 'php5-setup'

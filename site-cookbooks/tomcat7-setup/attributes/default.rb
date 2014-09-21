@@ -4,8 +4,8 @@ default[:java][:install_flavor] = 'oracle'
 default[:java][:oracle][:accept_oracle_download_terms] = true
 
 # settings for Tomcat
-default['tomcat']['base_version'] = 7
-default['tomcat']['java_options'] = "${JAVA_OPTS} -Xmx256M"
+override[:tomcat][:base_version] = 7
+override[:tomcat][:java_options] = "${JAVA_OPTS} -Xms256M -Xmx1G"
 
 case node['platform']
 when 'centos', 'redhat', 'fedora', 'amazon', 'scientific', 'oracle'

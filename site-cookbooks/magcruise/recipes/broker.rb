@@ -6,7 +6,11 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe 'apache2'
+include_recipe 'apache2::mod_ssl'
+include_recipe 'apache2::mod_proxy_ajp'
 include_recipe 'tomcat7-setup'
+
 
 template "#{node[:tomcat][:config_dir]}/Catalina/localhost/magcruise.xml" do
   source 'magcruise.xml.erb'

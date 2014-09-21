@@ -6,6 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe 'php5-setup'
 
 template "#{node[:apache][:dir]}/sites-available/#{node[:magcruise][:webui][:config]}" do
   source 'magcruise.conf.erb'
