@@ -30,7 +30,7 @@ end
 
 template "#{node[:magcruise][:webui][:src]}/app/Config/database.php" do
   source 'database.php.erb'
-  owner  'vagrant'
+  owner  node[:magcruise][:user]
   group  node[:magcruise][:group]
   mode   '0644'
   only_if { File.exists?(node[:magcruise][:webui][:src]) }
@@ -38,7 +38,7 @@ end
 
 template "#{node[:magcruise][:webui][:src]}/app/Config/const.php" do
   source 'const.php.erb'
-  owner  'vagrant'
+  owner  node[:magcruise][:user]
   group  node[:magcruise][:group]
   mode   '0644'
   only_if { File.exists?(node[:magcruise][:webui][:src]) }
