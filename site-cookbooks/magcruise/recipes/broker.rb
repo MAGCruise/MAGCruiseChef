@@ -25,15 +25,16 @@ template "#{node['apache']['dir']}/sites-available/020-magcruise-broker.conf" do
   notifies :restart, 'service[apache2]'
 end
 
-git node[:magcruise][:broker][:src] do
-  repository node[:magcruise][:broker][:src_url]
-  revision "master"
-  action :sync
-  only_if { node[:magcruise][:broker][:src_type] == 'git' }
-end
-
 apache_site '020-magcruise-broker' do
   enable true
+end
+
+git node[:magcruise][:broker][:src] do
+  repository node[:magcruise][:broker][:src_url]
+  revision node[:magcruise][:broker][:src_branch]
+  action :sync
+  enable_submodules true
+  only_if { node[:magcruise][:broker][:src_type] == 'git' }
 end
 
 # create document root

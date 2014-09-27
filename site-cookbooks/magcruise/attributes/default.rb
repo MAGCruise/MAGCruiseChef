@@ -39,6 +39,7 @@ default[:magcruise][:broker][:hostname] = "broker.#{node[:magcruise][:domain]}"
 default[:magcruise][:broker][:src]      = "#{node[:magcruise][:synced_folder]}/#{node[:magcruise][:broker][:name]}"
 default[:magcruise][:broker][:src_type] = 'synced'
 default[:magcruise][:broker][:src_url]  = 'https://github.com/MAGCruise/MAGCruiseBroker.git'
+default[:magcruise][:broker][:src_branch] = 'master'
 default[:magcruise][:broker][:docbase]  = "#{node[:magcruise][:apps_root]}/#{node[:magcruise][:broker][:name]}/webapps_magcruise/magcruise"
 default[:magcruise][:broker][:context_path] = '/magcruise'
 default[:magcruise][:broker_it][:context_path] = '/magcruise-it'
