@@ -22,11 +22,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     default.vm.network :private_network, ip: '192.168.30.10'
-    default.vm.hostname = 'magcruise.dev'
+    default.vm.hostname = 'www.magcruise.dev'
     default.landrush.host 'www.magcruise.dev', '192.168.30.10'
 
     VirtualBox::synced_src  default, 'src/MAGCruiseWebUI', 'MAGCruiseWebUI'
-    VirtualBox::rsynced_src default, 'src/MAGCruiseBroker/webapps_magcruise/magcruise', 'MAGCruiseBroker'
+    VirtualBox::rsynced_src default, 'src/MAGCruiseBroker', 'MAGCruiseBroker'
 
     Chef::configure(default, :info) do|chef|
       chef.add_role 'database'
@@ -61,7 +61,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       chef.json = {
         magcruise: {
           broker: { host: '192.168.33.11' },
-          db:     { host: '192.168.33.12' }
+          db:     { host: '192.168.33.12' },
+          webui:  {}
         }
       }
     end

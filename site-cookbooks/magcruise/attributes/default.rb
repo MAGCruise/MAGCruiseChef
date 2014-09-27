@@ -14,16 +14,19 @@ default[:magcruise][:synced_folder] = '/var/src'
 default[:magcruise][:domain] = 'magcruise.dev'
 
 # magcruise webui default settings
-default[:magcruise][:webui][:host] = 'localhost'
-default[:magcruise][:webui][:hostname] = "webui.#{node[:magcruise][:domain]}"
-default[:magcruise][:webui][:name]   = 'MAGCruiseWebUI'
-default[:magcruise][:webui][:src]    = "#{node[:magcruise][:synced_folder]}/#{node[:magcruise][:webui][:name]}"
-default[:magcruise][:webui][:config] = '010-magcruise.conf'
+default[:magcruise][:webui][:name]       = 'MAGCruiseWebUI'
+default[:magcruise][:webui][:host]       = 'localhost'
+default[:magcruise][:webui][:hostname]   = "webui.#{node[:magcruise][:domain]}"
+default[:magcruise][:webui][:src]        = "#{node[:magcruise][:synced_folder]}/#{node[:magcruise][:webui][:name]}"
+default[:magcruise][:webui][:src_type]   = 'synced'
+default[:magcruise][:webui][:src_url]    = 'https://github.com/MAGCruise/MAGCruiseWebUI.git'
+default[:magcruise][:webui][:src_branch] = 'develop'
+default[:magcruise][:webui][:config]     = '010-magcruise.conf'
 default[:magcruise][:webui][:document_root] = "#{node[:magcruise][:apps_root]}/#{node[:magcruise][:webui][:name]}"
 default[:magcruise][:webui][:path_prefix] = ''
 
 # magcruise database default settings
-default[:magcruise][:db][:host] = 'localhost'
+default[:magcruise][:db][:host]     = 'localhost'
 default[:magcruise][:db][:hostname] = "db.#{node[:magcruise][:domain]}"
 default[:magcruise][:db][:name]     = "#{node[:magcruise][:name]}"
 default[:magcruise][:db][:login]    = "#{node[:magcruise][:name]}"
