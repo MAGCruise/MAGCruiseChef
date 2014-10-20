@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: apache-setup
+# Cookbook Name:: php5-setup
 # Recipe:: default
 #
 # Copyright 2014, YOUR_COMPANY_NAME

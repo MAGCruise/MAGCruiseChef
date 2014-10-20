@@ -15,4 +15,13 @@ user node[:magcruise][:user] do
   system true
 end
 
-include_recipe 'apache-setup'
+directory node[:magcruise][:apps_root] do
+  action :create
+  recursive true
+end
+
+directory node[:magcruise][:synced_folder] do
+  action :create
+  recursive true
+end
+

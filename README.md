@@ -55,3 +55,4 @@ http://nrel.github.io/vagrant-boxes/
 
 ## 開発関連
 [開発時の設定等](doc/development.md)
+[本番環境(AWS)への配備](doc/production.md)

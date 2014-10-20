@@ -8,13 +8,5 @@ run_list(
 default_attributes(
   "apache" => {
     "listen_ports" => ["80", "443"]
-  },
-  "magcruise" => {
-    "database" => {
-      "host" => "localhost",
-      "login" => "magcruise",
-      "password" => "password",
-      "database" => "magcruise"
-    }
   }
 )

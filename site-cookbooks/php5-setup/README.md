@@ -1,5 +1,5 @@
-yum-repository-setup Cookbook
-=============================
+php5-setup Cookbook
+=====================
 TODO: Enter the cookbook description here.
 
 e.g.
@@ -11,14 +11,14 @@ TODO: List your cookbook requirements. Be sure to include any requirements this 
 
 e.g.
 #### packages
-- `toaster` - yum-repository-setup needs toaster to brown your bagel.
+- `toaster` - php5-setup needs toaster to brown your bagel.
 
 Attributes
 ----------
 TODO: List your cookbook attributes here.
 
 e.g.
-#### yum-repository-setup::default
+#### php5-setup::default
 <table>
   <tr>
     <th>Key</th>
@@ -27,7 +27,7 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['yum-repository-setup']['bacon']</tt></td>
+    <td><tt>['php5-setup']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -36,17 +36,17 @@ e.g.
 
 Usage
 -----
-#### yum-repository-setup::default
+#### php5-setup::default
 TODO: Write usage instructions for each cookbook.
 
 e.g.
-Just include `yum-repository-setup` in your node's `run_list`:
+Just include `php5-setup` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[yum-repository-setup]"
+    "recipe[php5-setup]"
   ]
 }
 ```
